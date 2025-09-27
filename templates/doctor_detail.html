@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+<a id="backToDoctors" class="btn btn-light mb-3">&larr; Back</a>
+
+<div class="card-custom p-4">
+  <div class="d-flex gap-3 align-items-start">
+    <img id="docAvatar" src="https://via.placeholder.com/110" class="rounded-circle" width="110" height="110">
+    <div style="flex:1">
+      <h4 id="docFullName" class="fw-bold">Doctor Name</h4>
+      <div id="docDept" class="muted">Department</div>
+      <div class="mt-2">
+        <span id="docExp" class="badge bg-primary"></span>
+      </div>
+      <p id="docShortBio" class="mt-3 muted"></p>
+      <div class="d-flex gap-2 mt-3">
+        <a id="btnSchedule" class="btn btn-primary">Schedule</a>
+        <button id="btnFav" class="btn btn-outline-primary">♡ Favorite</button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <h6 class="fw-semibold">Profile</h6>
+  <p id="docProfile" class="muted">Doctor profile & career path will appear here.</p>
+</div>
+
+<script>
+// All rendering done by main.js (safe: no Jinja inside JS)
+</script>
+{% endblock %}

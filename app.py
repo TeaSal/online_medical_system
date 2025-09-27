@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, abort
+from flask import Flask, request, jsonify, render_template, abort, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
@@ -10,7 +10,7 @@ app = Flask(__name__)
 # ----------------------------
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
     "DATABASE_URL",
-    "mysql+mysqlconnector://root:yourpassword@localhost/meddb"  # fallback if env var not set
+    "sqlite:///temp.db"   # fallback to SQLite for easy local testing
 )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -57,9 +57,8 @@ class Bill(db.Model):
     amount = db.Column(db.Float, nullable=False)
     paid_date = db.Column(db.DateTime, nullable=True)
 
-
 # ----------------------------
-# Person B's Frontend Routes
+# Frontend Routes (Person B)
 # ----------------------------
 @app.route("/")
 def home():
@@ -73,14 +72,33 @@ def login():
 def signup():
     return render_template("signup.html")
 
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")
+
+@app.route("/doctors")
+def doctors_page():
+    return render_template("doctors.html")
+
+@app.route("/doctor/<int:doc_id>")
+def doctor_info(doc_id):
+    return render_template("doctor_info.html", doc_id=doc_id)
+
+@app.route("/doctor/<int:doc_id>/book")
+def book(doc_id):
+    return render_template("book.html", doc_id=doc_id)
+
+@app.route("/appointments_ui")
+def appointments_ui():
+    return render_template("appointments.html")
 
 # ----------------------------
 # Backend API Routes
 # ----------------------------
 
-# Doctors
-@app.route("/doctors", methods=["GET", "POST"])
-def doctors():
+# Doctors API
+@app.route("/api/doctors", methods=["GET", "POST"])
+def doctors_api():
     if request.method == "GET":
         doctors = Doctor.query.all()
         return jsonify([
@@ -117,10 +135,9 @@ def doctors():
             "created_at": new_doc.created_at
         })
 
-
-# Patients
-@app.route("/patients", methods=["GET", "POST"])
-def patients():
+# Patients API
+@app.route("/api/patients", methods=["GET", "POST"])
+def patients_api():
     if request.method == "GET":
         patients = Patient.query.all()
         return jsonify([
@@ -155,10 +172,9 @@ def patients():
             "email": new_patient.email
         })
 
-
-# Appointments
-@app.route("/appointments", methods=["GET", "POST"])
-def appointments():
+# Appointments API
+@app.route("/api/appointments", methods=["GET", "POST"])
+def appointments_api():
     if request.method == "GET":
         appts = Appointment.query.all()
         return jsonify([
@@ -190,10 +206,9 @@ def appointments():
             "status": new_appt.status
         })
 
-
-# Bills
-@app.route("/bills", methods=["GET", "POST"])
-def bills():
+# Bills API
+@app.route("/api/bills", methods=["GET", "POST"])
+def bills_api():
     if request.method == "GET":
         bills = Bill.query.all()
         return jsonify([
@@ -224,8 +239,7 @@ def bills():
             "paid_date": new_bill.paid_date
         })
 
-
-@app.route("/bills/<int:bill_id>/pay", methods=["POST"])
+@app.route("/api/bills/<int:bill_id>/pay", methods=["POST"])
 def pay_bill(bill_id):
     bill = Bill.query.get_or_404(bill_id)
     bill.paid_date = datetime.utcnow()
@@ -235,7 +249,6 @@ def pay_bill(bill_id):
         "status": "paid",
         "paid_date": bill.paid_date
     })
-
 
 # ----------------------------
 # Entry Point

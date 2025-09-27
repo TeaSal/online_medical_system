@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block content %}
+<a id="backToDoc" class="btn btn-light mb-3">&larr; Back</a>
+
+<div class="card-custom p-4">
+  <h5 id="scheduleHeader" class="fw-bold">Schedule Appointment</h5>
+  <div class="muted small mb-2" id="scheduleSub">Select date, time and patient details</div>
+
+  <!-- date pills -->
+  <div id="schedDatePills" class="mb-3"></div>
+
+  <!-- time slots -->
+  <div id="schedTimeSlots" class="d-flex flex-wrap gap-2 mb-3">
+    <!-- populated by JS -->
+  </div>
+
+  <!-- patient selector -->
+  <div class="mb-3">
+    <div class="btn-group" role="group" aria-label="Patient for">
+      <input type="radio" class="btn-check" name="patientFor" id="pfSelf" autocomplete="off" checked>
+      <label class="btn btn-outline-secondary btn-sm" for="pfSelf">Yourself</label>
+
+      <input type="radio" class="btn-check" name="patientFor" id="pfOther" autocomplete="off">
+      <label class="btn btn-outline-secondary btn-sm" for="pfOther">Another person</label>
+    </div>
+  </div>
+
+  <div id="patientFields" class="row g-2 mb-3">
+    <div class="col-6">
+      <label class="form-label">Full name</label>
+      <input id="patientName" class="form-control">
+    </div>
+    <div class="col-3">
+      <label class="form-label">Age</label>
+      <input id="patientAge" class="form-control" type="number" min="0">
+    </div>
+    <div class="col-3">
+      <label class="form-label">Gender</label>
+      <select id="patientGender" class="form-select">
+        <option>Female</option><option>Male</option><option>Other</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Describe your problem</label>
+    <textarea id="patientProblem" class="form-control" rows="3" placeholder="Describe symptoms briefly"></textarea>
+  </div>
+
+  <div class="d-grid">
+    <button id="confirmSched" class="btn btn-primary">Confirm Appointment</button>
+  </div>
+</div>
+
+<script>
+// DOM handling is in main.js
+</script>
+{% endblock %}

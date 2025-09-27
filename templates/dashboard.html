@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="dashboard">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <h4 class="fw-bold">Hi, <span id="dashUserName">Guest</span></h4>
+      <div class="muted small" id="dashSubtitle">Manage appointments, doctors and more.</div>
+    </div>
+    <div>
+      <a href="/doctor/1/schedule" class="btn btn-outline-primary me-2">Quick Schedule</a>
+      <a href="/doctors" class="btn btn-primary">Browse Doctors</a>
+    </div>
+  </div>
+
+  <!-- ✅ date pills row -->
+  <div class="dates-wrapper mb-4">
+    <div id="datesRow" class="dates-row"></div>
+  </div>
+
+  <!-- upcoming appointment widget -->
+  <div id="nextAppt" class="card-custom p-3 mb-4"></div>
+
+  <!-- doctors preview -->
+  <h6 class="fw-semibold mb-3">Top Doctors</h6>
+  <div id="doctorsPreview" class="row g-3"></div>
+</div>
+{% endblock %}
