@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h4 class="fw-bold">Appointments</h4>
+  <div class="btn-group" role="group" id="apptTabs">
+    <button class="btn btn-outline-primary btn-sm active" data-tab="upcoming">Upcoming</button>
+    <button class="btn btn-outline-primary btn-sm" data-tab="completed">Completed</button>
+    <button class="btn btn-outline-primary btn-sm" data-tab="cancelled">Cancelled</button>
+  </div>
+</div>
+
+<div id="apptsContainer"></div>
+<script>
+// listing & actions in main.js
+</script>
+{% endblock %}
