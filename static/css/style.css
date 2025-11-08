@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Montserrat:wght@400;600&display=swap');
+
+:root {
+  --font-main: 'Poppins', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+  --primary-color: #4b7bec;
+  --accent-color: #6c63ff;
+  --text-color: #333;
+  --muted-color: #777;
+  --bg-light: #f9faff;
+}
+
 :root{
   --bg: #F3F6FF;
   --card: #fff;
@@ -5,12 +17,31 @@
   --brand: #2b6ef6;
   --shadow: 0 12px 30px rgba(16,24,40,0.06);
 }
-body{
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-  background: linear-gradient(180deg,#F9FBFF 0%, #F3F6FF 100%);
-  color:#0f1724;
-  margin:0;
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-light);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--primary-color);
+  letter-spacing: 0.5px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
 .brand-bubble{
   background: linear-gradient(180deg,var(--brand), #1f57d4);
   color:white;width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;
@@ -64,13 +95,34 @@ body {
 }
 
 .btn {
-  border-radius: 10px;
+  font-family: var(--font-main);
   font-weight: 500;
+  border-radius: 10px;
   transition: all 0.2s ease-in-out;
 }
+
 .btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(15, 23, 42, 0.1);
+  transform: scale(1.03);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-color);
+}
+
+.btn-outline-primary {
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: white;
 }
 
 h4, h5, h6 {
@@ -155,3 +207,134 @@ h4, h5, h6 {
   color: #fff;
 }
 
+.card, .doctor-card, .appt-card {
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  background-color: white;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+}
+
+.card:hover, .doctor-card:hover, .appt-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.doctor-card img {
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+.date-pill {
+  background-color: white;
+  color: var(--text-color);
+  border-radius: 12px;
+  text-align: center;
+  padding: 10px 12px;
+  width: 65px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.date-pill:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+.app-toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: var(--primary-color);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.bill-card {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 12px;
+  background-color: white;
+  font-family: var(--font-main);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.bill-card h5 {
+  color: var(--primary-color);
+  font-family: var(--font-heading);
+}
+/* ===========================
+   HOME PAGE STYLING
+=========================== */
+
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  text-align: center;
+  background: linear-gradient(120deg, #e8f0ff 0%, #f9faff 50%, #ffffff 100%);
+  font-family: 'Poppins', sans-serif;
+  padding: 40px 20px;
+}
+
+.home-hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.8rem;
+  color: #4b7bec;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.home-hero h2 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.home-hero .btn-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.home-hero .btn {
+  font-family: 'Poppins', sans-serif;
+  padding: 12px 28px;
+  font-size: 1rem;
+  border-radius: 30px;
+  box-shadow: 0 5px 12px rgba(75, 123, 236, 0.25);
+  transition: all 0.25s ease-in-out;
+}
+
+.home-hero .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(75, 123, 236, 0.35);
+}
+
+.home-hero img {
+  max-width: 350px;
+  margin-top: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+  font-size: 0.9rem;
+  margin-top: 50px;
+}
