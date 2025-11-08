@@ -1,27 +1,26 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="dashboard">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <div>
-      <h4 class="fw-bold">Hi, <span id="dashUserName">Guest</span></h4>
-      <div class="muted small" id="dashSubtitle">Manage appointments, doctors and more.</div>
-    </div>
-    <div>
-      <a href="/doctor/1/schedule" class="btn btn-outline-primary me-2">Quick Schedule</a>
-      <a href="/doctors" class="btn btn-primary">Browse Doctors</a>
-    </div>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <div>
+    <h4 class="fw-bold">Hi, <span id="dashUserName">Guest</span></h4>
+    <h4 class="mt-4">My Favorite Doctors</h4>
+<div id="favDoctors" class="row g-3"></div>
+
+    <div class="muted small">Manage appointments, doctors and more.</div>
   </div>
-
-  <!-- ✅ date pills row -->
-  <div class="dates-wrapper mb-4">
-    <div id="datesRow" class="dates-row"></div>
+  <div>
+    <a href="{{ url_for('doctors_page') }}" class="btn btn-outline-primary me-2">Browse Doctors</a>
+    <a href="{{ url_for('appointments_page') }}" class="btn btn-primary">My Appointments</a>
   </div>
-
-  <!-- upcoming appointment widget -->
-  <div id="nextAppt" class="card-custom p-3 mb-4"></div>
-
-  <!-- doctors preview -->
-  <h6 class="fw-semibold mb-3">Top Doctors</h6>
-  <div id="doctorsPreview" class="row g-3"></div>
 </div>
+
+<!-- date pills -->
+<div class="dates-wrapper mb-4"><div id="datesRow" class="dates-row"></div></div>
+
+<!-- next appt -->
+<div id="nextAppt" class="card p-3 mb-4"></div>
+
+<!-- top doctors preview -->
+<h6 class="fw-semibold mb-3">Top Doctors</h6>
+<div id="doctorsPreview" class="row g-3"></div>
 {% endblock %}

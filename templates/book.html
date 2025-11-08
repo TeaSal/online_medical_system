@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<a id="backToDoc" href="#" class="btn btn-light mb-3">&larr; Back</a>
+
+<div class="card p-4">
+  <h5 id="scheduleHeader" class="fw-bold">Schedule Appointment</h5>
+  <div class="muted small mb-2">Select date, time and patient details</div>
+
+  <!-- Date and time options (populated by JS) -->
+  <div id="schedDatePills" class="mb-3"></div>
+  <div id="schedTimeSlots" class="d-flex flex-wrap gap-2 mb-3"></div>
+
+  <div class="mb-3">
+    <label for="patientName">Full name</label>
+    <input id="patientName" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label for="patientAge">Age</label>
+    <input id="patientAge" type="number" min="0" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="patientProblem">Describe problem</label>
+    <textarea id="patientProblem" class="form-control" rows="3"></textarea>
+  </div>
+  <div class="d-grid">
+    <button id="confirmSched" class="btn btn-primary">Confirm Appointment</button>
+  </div>
+</div>
+{% endblock %}

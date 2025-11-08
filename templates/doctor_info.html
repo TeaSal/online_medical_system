@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<a href="{{ url_for('doctors_page') }}" class="btn btn-light mb-3">&larr; Back</a>
+<div class="card p-4">
+  <div class="d-flex gap-3 align-items-start">
+    <img id="docAvatar" src="https://via.placeholder.com/110" class="rounded-circle" width="110" height="110">
+    <div style="flex:1">
+      <h4 id="docFullName">Doctor Name</h4>
+      <div id="docDept" class="muted">Department</div>
+      <div class="mt-2"><span id="docExp" class="badge bg-primary">0 yrs</span></div>
+      <p id="docShortBio" class="mt-3 muted">Short bio here.</p>
+      <div class="d-flex gap-2 mt-3">
+        <a id="btnSchedule" class="btn btn-primary">Schedule</a>
+        <button id="btnFav" class="btn btn-outline-primary">♡ Favorite</button>
+      </div>
+    </div>
+  </div>
+  <hr class="my-4">
+  <h6>Profile</h6>
+  <p id="docProfile" class="muted"></p>
+</div>
+{% endblock %}

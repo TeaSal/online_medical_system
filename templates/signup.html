@@ -1,56 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="auth-screen d-flex align-items-center justify-content-center">
-  <div class="card-custom p-4" style="max-width:520px; width:100%">
-    <div class="text-center mb-3">
-      <h2 class="fw-bold">Create account</h2>
-      <p class="muted small">A few details and you’re ready to book</p>
-    </div>
-
-    <form id="signupForm" novalidate>
-      <div class="row g-2">
-        <div class="col-12">
-          <label class="form-label">Full name</label>
-          <input id="signupName" class="form-control" required>
-        </div>
-
-        <div class="col-6">
-          <label class="form-label">Date of birth</label>
-          <input id="signupDob" type="date" class="form-control" required>
-        </div>
-        <div class="col-6">
-          <label class="form-label">Contact (optional)</label>
-          <input id="signupContact" class="form-control" placeholder="+91 98765...">
-        </div>
-
-        <div class="col-12">
-          <label class="form-label">Email</label>
-          <input id="signupEmail" type="email" class="form-control" required>
-        </div>
-
-        <div class="col-6 position-relative">
-          <label class="form-label">Password</label>
-          <input id="signupPassword" type="password" class="form-control" minlength="6" required>
-        </div>
-
-        <div class="col-6 position-relative">
-          <label class="form-label">Confirm</label>
-          <input id="signupConfirmPassword" type="password" class="form-control" required>
-        </div>
-
-        <div class="col-12">
-          <div class="pw-meter"><i style="width:0%"></i></div>
-        </div>
-      </div>
-
-      <div class="d-grid mt-3">
-        <button class="btn btn-primary" type="submit">Sign up</button>
-      </div>
+  <div class="card p-4" style="max-width:520px; width:100%;">
+    <h3 class="text-center mb-2">Create account</h3>
+    <form id="signupForm">
+      <div class="mb-2"><label>Full name</label><input id="signupName" class="form-control" required></div>
+      <div class="mb-2"><label>DOB</label><input id="signupDob" type="date" class="form-control"></div>
+      <div class="mb-2"><label>Contact</label><input id="signupContact" class="form-control"></div>
+      <div class="mb-2"><label>Email</label><input id="signupEmail" class="form-control" type="email" required></div>
+      <div class="mb-2"><label>Password</label><input id="signupPassword" class="form-control" type="password" minlength="6" required></div>
+      <div class="d-grid mt-2"><button class="btn btn-primary" type="submit">Sign up</button></div>
     </form>
-
-    <div class="text-center mt-3 small muted">
-      Already registered? <a href="/login">Log in</a>
-    </div>
+    <div class="mt-3 text-center small muted">Already registered? <a href="{{ url_for('login_page_view') }}">Log in</a></div>
   </div>
 </div>
 {% endblock %}

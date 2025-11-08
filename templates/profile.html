@@ -1,31 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
 <h4 class="fw-bold mb-3">Profile</h4>
-
-<div class="card-custom p-3">
+<div class="card p-3">
   <form id="profileForm">
-    <div class="row g-2">
-      <div class="col-12">
-        <label class="form-label">Full name</label>
-        <input id="profileName" class="form-control">
-      </div>
-      <div class="col-6">
-        <label class="form-label">DOB</label>
-        <input id="profileDob" type="date" class="form-control">
-      </div>
-      <div class="col-6">
-        <label class="form-label">Contact</label>
-        <input id="profileContact" class="form-control">
-      </div>
-      <div class="col-12">
-        <label class="form-label">Email</label>
-        <input id="profileEmail" type="email" class="form-control" readonly>
-      </div>
-    </div>
-
-    <div class="d-grid mt-3">
-      <button class="btn btn-primary" type="submit">Save profile</button>
-    </div>
+    <div class="mb-2"><label>Full name</label><input id="profileName" class="form-control"></div>
+    <div class="mb-2"><label>DOB</label><input id="profileDob" type="date" class="form-control"></div>
+    <div class="mb-2"><label>Contact</label><input id="profileContact" class="form-control"></div>
+    <div class="mb-2"><label>Email</label><input id="profileEmail" class="form-control" readonly></div>
+    <div class="d-grid mt-2"><button class="btn btn-primary" type="submit">Save profile</button></div>
   </form>
 </div>
 {% endblock %}

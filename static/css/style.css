@@ -1,115 +1,34 @@
-/* theme & general */
 :root{
   --bg: #F3F6FF;
-  --card: #FFFFFF;
-  --muted: #6B7280;
-  --brand: #2B6EF6;
-  --accent: #7CB4FF;
-  --radius: 16px;
+  --card: #fff;
+  --muted: #6b7280;
+  --brand: #2b6ef6;
   --shadow: 0 12px 30px rgba(16,24,40,0.06);
 }
-*{box-sizing:border-box}
 body{
-  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   background: linear-gradient(180deg,#F9FBFF 0%, #F3F6FF 100%);
-  color:#0F1724; margin:0; padding-bottom:92px;
+  color:#0f1724;
+  margin:0;
 }
-
-/* header */
-.site-header{ background: transparent; padding-top:10px; padding-bottom:6px; }
 .brand-bubble{
   background: linear-gradient(180deg,var(--brand), #1f57d4);
-  color:white; width:46px;height:46px;border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:700;
+  color:white;width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;
 }
-.brand-title{ font-weight:700; color:var(--brand); }
 .muted{ color:var(--muted); }
-
-/* top action buttons */
-.action-btn{ color:var(--muted); padding:8px; border-radius:10px; text-decoration:none; }
+.card{ border-radius:12px; box-shadow: var(--shadow); background:var(--card); }
 .btn-ghost{ background:transparent; border:1px solid rgba(0,0,0,0.04); padding:6px 10px; border-radius:10px; }
-
-/* cards */
-.card-custom{ background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); }
-
-/* bottom nav - mobile */
-.bottom-nav{
-  position:fixed; left:12px; right:12px; bottom:14px; height:64px; background:#fff; border-radius:20px; display:flex; justify-content:space-around; align-items:center; box-shadow:0 12px 30px rgba(2,6,23,0.12);
-}
-.bn-item{ color:var(--muted); font-size:18px; text-decoration:none; width:20%; text-align:center; }
-.bn-item.active{ color:var(--brand); }
-
-/* auth-screen */
-.auth-screen{ min-height:76vh; }
-
-/* pw toggle */
-.pw-toggle{ position:absolute; right:12px; top:34px; border:none; background:transparent; font-size:16px; cursor:pointer; }
-
-/* pw-meter */
-.pw-meter { height:8px; background:#eee; border-radius:999px; overflow:hidden; margin-top:6px; }
-.pw-meter > i { display:block; height:100%; background:#10b981; width:0%; transition:width .2s ease; }
-
-/* ✅ updated: date pills */
-.dates-wrapper {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 4px;
-}
-.dates-row {
-  display: flex;
-  gap: 12px;
-  min-width: max-content;
-}
-.date-pill {
-  flex: 0 0 auto;
-  width: 64px;
-  height: 80px;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.05);
-  text-align: center;
-  padding: 8px;
-  cursor: pointer;
-  transition: all .2s ease;
-}
-.date-pill .day {
-  font-size: 13px;
-  color: var(--muted);
-}
-.date-pill .num {
-  font-weight: 700;
-  font-size: 18px;
-  color: #0F1724;
-  margin-top: 4px;
-}
-.date-pill.active {
-  background: var(--brand);
-  color: #fff;
-}
-.date-pill.active .day,
-.date-pill.active .num {
-  color: #fff;
-}
-.date-pill:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-/* appointment card */
+.dates-wrapper{ overflow-x:auto; padding-bottom:8px; margin-bottom:8px; }
+.dates-row{ display:flex; gap:12px; min-width:max-content; }
+.date-pill{ flex:0 0 auto; width:72px; height:84px; border-radius:14px; background:#fff; box-shadow:0 6px 16px rgba(0,0,0,0.05); display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer; }
+.date-pill .small{ color:var(--muted); }
+.date-pill.active{ background:var(--brand); color:white; }
 .appt-card{ background: linear-gradient(90deg,#fff 0%, #f8fbff 100%); border-radius:12px; padding:12px; }
-
-/* doctor cards */
-.doctor-card { background:#EEF4FF; padding:12px; border-radius:20px; display:flex; gap:12px; align-items:center; }
-.doctor-card img { border-radius:50%; }
-
-/* schedule time slots */
-.slot { border-radius:12px; padding:8px 12px; border:1px solid rgba(37,99,235,0.15); background:transparent; }
-.slot.active { background:var(--brand); color:white; border-color:var(--brand); }
-
-/* toast */
-.app-toast { position:fixed; right:20px; bottom:100px; padding:12px 16px; background:rgba(16,185,129,0.09); color:#047857; border-radius:10px; box-shadow:0 8px 20px rgba(2,6,23,0.08); z-index:2000; }
-
-/* responsive tweaks */
+.doctor-card{ background:#eef4ff; padding:12px; border-radius:12px; display:flex; gap:12px; align-items:center; }
+.slot{ border-radius:12px; padding:8px 12px; border:1px solid rgba(37,99,235,0.15); background:transparent; cursor:pointer; }
+.slot.active{ background:var(--brand); color:white; border-color:var(--brand); }
+.app-toast{ position:fixed; right:20px; bottom:100px; padding:12px 16px; background:rgba(16,185,129,0.09); color:#047857; border-radius:10px; display:none; z-index:2000; }
 @media(min-width:992px){
-  .bottom-nav { display:none; }
-  main.container { max-width:980px; }
+  .dates-wrapper{ margin-left:0; }
+  main.container{ max-width:980px; }
 }
