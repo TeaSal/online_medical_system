@@ -4,7 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Medical System{% endblock %}</title>
+
+    <!-- your stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Flatpickr (calendar) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
   </head>
   <body>
@@ -13,15 +20,16 @@
         <a class="logo" href="{{ url_for('home_page') }}">MedicalSys</a>
         <nav class="right">
           {% if session.get('user_id') %}
-  <a href="{{ url_for('dashboard_page') }}">Dashboard</a>
-  <a href="{{ url_for('appointments_page') }}">Appointments</a>
-  <a href="{{ url_for('profile_page') }}">Profile</a>
-  <a href="{{ url_for('logout_page_view') }}">Logout</a>
-{% else %}
-  <a href="{{ url_for('login_page_view') }}">Login</a>
-  <a class="btn btn-sm btn-primary" href="{{ url_for('signup_page_view') }}">Sign up</a>
-{% endif %}
+            <a href="{{ url_for('dashboard_page') }}">Dashboard</a>
+            <a href="{{ url_for('appointments_page') }}">Appointments</a>
+            <a href="{{ url_for('profile_page') }}">Profile</a>
+            <a href="{{ url_for('logout_page_view') }}">Logout</a>
+            <a href="{{ url_for('bills_page') }}">Bills</a>
 
+          {% else %}
+            <a href="{{ url_for('login_page_view') }}">Login</a>
+            <a class="btn btn-sm btn-primary" href="{{ url_for('signup_page_view') }}">Sign up</a>
+          {% endif %}
         </nav>
       </div>
     </header>

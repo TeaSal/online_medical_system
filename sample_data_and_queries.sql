@@ -4,6 +4,7 @@ USE meddb;
 INSERT INTO doctors (name, department, experience, contact, email)
 VALUES ('Dr. Asha Rao','Cardiology',8,'+91-9876543210','asha.rao@example.com'),
        ('Dr. Rahul Mehra','General Medicine',5,'+91-9123456780','rahul.mehra@example.com');
+       ('Dr. Nia Allina','Dermatology',3,'+91-91234512345','nia.allina@example.com');
 
 INSERT INTO patients (name, dob, gender, contact, email, address)
 VALUES ('Tiya Singh','2004-06-12','Female','+91-9000001111','tiya.singh@example.com','Delhi'),

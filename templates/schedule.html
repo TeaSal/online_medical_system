@@ -6,13 +6,14 @@
   <h5 id="scheduleHeader" class="fw-bold">Schedule Appointment</h5>
   <div class="muted small mb-2" id="scheduleSub">Select date, time and patient details</div>
 
-  <!-- date pills -->
-  <div id="schedDatePills" class="mb-3"></div>
+  <!-- date picker -->
+  <div class="mb-3">
+    <label class="form-label">Date</label>
+    <input id="appointmentDate" class="form-control" placeholder="Pick a date" readonly>
+  </div>
 
   <!-- time slots -->
-  <div id="schedTimeSlots" class="d-flex flex-wrap gap-2 mb-3">
-    <!-- populated by JS -->
-  </div>
+  <div id="schedTimeSlots" class="d-flex flex-wrap gap-2 mb-3"></div>
 
   <!-- patient selector -->
   <div class="mb-3">
@@ -53,6 +54,6 @@
 </div>
 
 <script>
-// DOM handling is in main.js
+/* schedule interaction handled in static/js/main.js */
 </script>
 {% endblock %}
