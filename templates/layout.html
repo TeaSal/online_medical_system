@@ -17,7 +17,7 @@
   <body>
     <header class="topbar">
       <div class="container">
-        <a class="logo" href="{{ url_for('home_page') }}">MedicalSys</a>
+        <a class="logo" href="{{ url_for('home_page') }}">MedPortal</a>
         <nav class="right">
           {% if session.get('user_id') %}
             <a href="{{ url_for('dashboard_page') }}">Dashboard</a>
