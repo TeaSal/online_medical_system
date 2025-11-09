@@ -411,4 +411,26 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     })();
   }
+  // Handle Bill Payments
+document.addEventListener("click", async (e) => {
+  if (e.target.classList.contains("btn-pay")) {
+    const billId = e.target.dataset.id;
+    try {
+      const res = await fetch(`/api/bills/${billId}/pay`, { method: "POST" });
+      if (res.ok) {
+        toast("Payment successful!");
+        e.target.textContent = "Paid";
+        e.target.classList.remove("btn-primary");
+        e.target.classList.add("btn-outline-success");
+        e.target.disabled = true;
+      } else {
+        toast("Payment failed!");
+      }
+    } catch (err) {
+      console.error("Payment error:", err);
+      toast("Error processing payment");
+    }
+  }
+});
+
 });

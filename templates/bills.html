@@ -7,28 +7,94 @@
 fetch("/api/bills")
   .then(res => res.json())
   .then(data => {
+    const container = document.getElementById("billsList");
+
     if (data.error) {
-      document.getElementById("billsList").innerHTML = "<p>Please log in to view your bills.</p>";
+      container.innerHTML = "<p>Please log in to view your bills.</p>";
       return;
     }
 
     if (data.length === 0) {
-      document.getElementById("billsList").innerHTML = "<p>No bills found.</p>";
+      container.innerHTML = "<p>No bills found.</p>";
       return;
     }
 
-    document.getElementById("billsList").innerHTML = data.map(b => `
-      <div class="list-group-item d-flex justify-content-between align-items-center">
+    container.innerHTML = data.map(b => `
+      <div class="list-group-item d-flex justify-content-between align-items-center bill-item">
         <div>
           <div><strong>Appointment #${b.appointment_id}</strong></div>
           <div class="small text-muted">Created: ${new Date(b.created_at).toLocaleDateString()}</div>
         </div>
-        <div>
-          <span class="me-3">₹${b.amount.toFixed(2)}</span>
-          <span class="badge ${b.status === 'paid' ? 'bg-success' : 'bg-warning'}">${b.status}</span>
+        <div class="text-end">
+          <div class="fw-bold mb-1">₹${b.amount.toFixed(2)}</div>
+          <span class="badge ${b.status === 'paid' ? 'bg-success' : 'bg-warning text-dark'}">${b.status}</span>
+          ${b.status === 'unpaid' ? `
+            <button class="btn btn-sm btn-primary mt-2 pay-btn" data-id="${b.id}">
+              Pay Now
+            </button>
+          ` : `
+            <button class="btn btn-sm btn-outline-success mt-2" disabled>
+              Paid
+            </button>
+          `}
         </div>
       </div>
     `).join("");
+
+document.querySelectorAll(".pay-btn").forEach(btn => {
+  btn.addEventListener("click", async (e) => {
+    const billId = e.target.dataset.id;
+    try {
+      const res = await fetch(`/api/bills/${billId}/pay`, { method: "POST" });
+      let result = {};
+      try {
+        result = await res.json(); // try to parse JSON
+      } catch {
+        result = {}; // fallback if response isn't JSON
+      }
+
+      if (res.ok && (result.status === "paid" || result.message === "Payment successful")) {
+        const parent = e.target.parentElement;
+
+        // Change button
+        e.target.outerHTML = `
+          <button class="btn btn-sm btn-outline-success mt-2" disabled>Paid</button>
+        `;
+
+        // Change badge text and color
+        const badge = parent.querySelector(".badge");
+        if (badge) {
+          badge.classList.remove("bg-warning", "text-dark");
+          badge.classList.add("bg-success");
+          badge.textContent = "paid";
+        }
+
+        toast("Payment successful!");
+      } else {
+        toast(result.error || "Payment failed. Try again.");
+      }
+
+    } catch (err) {
+      console.error("Payment error:", err);
+      toast("Something went wrong — but check again, it might've gone through.");
+    }
+  });
+});
+
+
   });
 </script>
+
+<style>
+.bill-item {
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+.pay-btn {
+  border-radius: 8px;
+  padding: 5px 12px;
+}
+</style>
 {% endblock %}

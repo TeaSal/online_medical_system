@@ -1,17 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="d-flex align-items-center justify-content-center" style="min-height:60vh;">
-  <div class="card p-4" style="max-width:520px; width:100%;">
-    <h2 class="fw-bold text-center">MedPortal</h2>
-    <p class="text-center muted">Login or sign up to manage appointments.</p>
-    <div class="d-grid gap-2">
+<section class="home-hero">
+  <div class="home-content text-center">
+    <h1>Welcome to <span>MedPortal</span></h1>
+    <h2>Book doctor appointments and manage your health seamlessly.</h2>
+
+    <div class="btn-group mt-4">
       {% if session.get('user_id') %}
         <a href="{{ url_for('dashboard_page') }}" class="btn btn-primary">Go to Dashboard</a>
       {% else %}
         <a href="{{ url_for('login_page_view') }}" class="btn btn-primary">Log in</a>
-        <a href="{{ url_for('signup_page_view') }}" class="btn btn-outline-secondary">Sign up</a>
+        <a href="{{ url_for('signup_page_view') }}" class="btn btn-outline-primary">Sign up</a>
       {% endif %}
     </div>
+
+    <img src="https://cdn-icons-png.flaticon.com/512/4228/4228643.png" alt="Doctors Illustration" class="mt-5 hero-img">
   </div>
-</div>
+</section>
 {% endblock %}

@@ -152,6 +152,38 @@ def api_signup():
     db.session.commit()
     session["user_id"] = user.id
     return jsonify({"message": "created", "user": {"id": user.id, "name": user.name}})
+from flask import make_response
+
+@app.route("/api/bills/<int:bill_id>/pay", methods=["POST"])
+def pay_bill(bill_id):
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    bill = Bill.query.get(bill_id)
+    if not bill:
+        return jsonify({"error": "Bill not found"}), 404
+
+    if bill.status == "paid":
+        resp = make_response(jsonify({
+            "message": "Already paid",
+            "status": "paid"
+        }), 200)
+        resp.headers["Content-Type"] = "application/json"
+        return resp
+
+    bill.status = "paid"
+    bill.paid_at = datetime.utcnow()
+    db.session.commit()
+
+    resp = make_response(jsonify({
+        "message": "Payment successful",
+        "bill_id": bill.id,
+        "status": "paid"
+    }), 200)
+    resp.headers["Content-Type"] = "application/json"
+    return resp
+
+
 
 @app.route("/api/logout", methods=["POST"])
 def api_logout():

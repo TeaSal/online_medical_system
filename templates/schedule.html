@@ -2,58 +2,65 @@
 {% block content %}
 <a id="backToDoc" class="btn btn-light mb-3">&larr; Back</a>
 
-<div class="card-custom p-4">
-  <h5 id="scheduleHeader" class="fw-bold">Schedule Appointment</h5>
-  <div class="muted small mb-2" id="scheduleSub">Select date, time and patient details</div>
+<section class="appointment-container">
+  <div id="appointmentForm" class="appointment-form card-custom">
+    <h3 class="text-center mb-4 fw-bold text-primary">Book Your Appointment</h3>
+    <p class="text-center muted small mb-4">Select your preferred date, time, and fill in the patient details below.</p>
 
-  <!-- date picker -->
-  <div class="mb-3">
-    <label class="form-label">Date</label>
-    <input id="appointmentDate" class="form-control" placeholder="Pick a date" readonly>
-  </div>
+    <!-- DATE PICKER -->
+    <div class="form-group mb-3">
+      <label for="appointmentDate" class="form-label fw-semibold">Select Date</label>
+      <input type="date" id="appointmentDate" class="form-control" required>
+    </div>
 
-  <!-- time slots -->
-  <div id="schedTimeSlots" class="d-flex flex-wrap gap-2 mb-3"></div>
+    <!-- TIME SLOTS -->
+    <div class="form-group mb-3">
+      <label class="form-label fw-semibold">Choose a Time Slot</label>
+      <div id="schedTimeSlots" class="d-flex flex-wrap justify-content-center gap-2">
+        <!-- JS populates this -->
+      </div>
+    </div>
 
-  <!-- patient selector -->
-  <div class="mb-3">
-    <div class="btn-group" role="group" aria-label="Patient for">
-      <input type="radio" class="btn-check" name="patientFor" id="pfSelf" autocomplete="off" checked>
-      <label class="btn btn-outline-secondary btn-sm" for="pfSelf">Yourself</label>
+    <!-- PATIENT DETAILS -->
+    <div class="row g-2 mb-3">
+      <div class="col-6">
+        <label class="form-label fw-semibold">Full Name</label>
+        <input id="patientName" class="form-control" placeholder="Enter full name">
+      </div>
+      <div class="col-3">
+        <label class="form-label fw-semibold">Age</label>
+        <input id="patientAge" class="form-control" type="number" min="0" placeholder="Age">
+      </div>
+      <div class="col-3">
+        <label class="form-label fw-semibold">Gender</label>
+        <select id="patientGender" class="form-select">
+          <option>Female</option><option>Male</option><option>Other</option>
+        </select>
+      </div>
+    </div>
 
-      <input type="radio" class="btn-check" name="patientFor" id="pfOther" autocomplete="off">
-      <label class="btn btn-outline-secondary btn-sm" for="pfOther">Another person</label>
+    <!-- PROBLEM DESCRIPTION -->
+    <div class="form-group mb-4">
+      <label class="form-label fw-semibold">Describe your problem</label>
+      <textarea id="patientProblem" class="form-control" rows="3" placeholder="Describe symptoms briefly"></textarea>
+    </div>
+
+    <!-- BUTTON -->
+    <div class="d-grid">
+      <button id="confirmSched" type="button" class="btn btn-primary w-100">
+        Confirm Appointment
+      </button>
     </div>
   </div>
-
-  <div id="patientFields" class="row g-2 mb-3">
-    <div class="col-6">
-      <label class="form-label">Full name</label>
-      <input id="patientName" class="form-control">
-    </div>
-    <div class="col-3">
-      <label class="form-label">Age</label>
-      <input id="patientAge" class="form-control" type="number" min="0">
-    </div>
-    <div class="col-3">
-      <label class="form-label">Gender</label>
-      <select id="patientGender" class="form-select">
-        <option>Female</option><option>Male</option><option>Other</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">Describe your problem</label>
-    <textarea id="patientProblem" class="form-control" rows="3" placeholder="Describe symptoms briefly"></textarea>
-  </div>
-
-  <div class="d-grid">
-    <button id="confirmSched" class="btn btn-primary">Confirm Appointment</button>
-  </div>
-</div>
+</section>
 
 <script>
-/* schedule interaction handled in static/js/main.js */
+// prevent refresh behavior if somehow form is wrapped in <form> later
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("appointmentForm");
+  if (form && form.tagName === "FORM") {
+    form.addEventListener("submit", (e) => e.preventDefault());
+  }
+});
 </script>
 {% endblock %}
