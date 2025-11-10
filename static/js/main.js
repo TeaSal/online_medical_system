@@ -187,6 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
           minDate: "today",
           dateFormat: "Y-m-d",
           onChange: function(selectedDates) {
+            
             if (selectedDates && selectedDates.length) {
               const d = selectedDates[0];
               chosenDate = d.toISOString().slice(0,10);
@@ -257,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 } catch (err) {
   if (err.status === 409) toast("Time clash — pick another slot");
-  else toast("Booking failed");
+  else toast("Time clash — pick another slot");
   console.error("Error while booking:", err);
 }
 
